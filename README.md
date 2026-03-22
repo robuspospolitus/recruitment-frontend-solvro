@@ -23,7 +23,7 @@ A modern, responsive web application for exploring cocktails, built with a focus
 
 ## Deployment
 
-TO BE ADDED
+The app can be accessed here: [COCKTAIL BROWSER](https://recruitment-frontend-solvro.vercel.app/)
 
 ## Installation & Setup
 
