@@ -25,9 +25,9 @@ export function Select({value, setValue, type}:Props) {
     if (error) return <span>Fetching categories failed.</span>
 
     return (
-        <div className="my-5 max-w-50">
+        <div className="my-5 max-w-72">
             <Combobox items={data.data} onValueChange={setValue}>
-                <ComboboxInput value={value || "All"} onChange={(e) => setValue(e.target.value)} placeholder="Select a framework" />
+                <ComboboxInput value={value || "All"} onChange={(e) => setValue(e.target.value)} placeholder="Filter" />
                 <ComboboxContent>
                     <ComboboxEmpty>No items found.</ComboboxEmpty>
                     <ComboboxList>

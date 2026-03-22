@@ -7,7 +7,7 @@ import { Select } from "@/components/utils/select";
 // Zaznaczanie koktajlu jako ulubiony
 // // Wyszukiwanie i filtrowanie koktajli - użyj wybranych pól, które zwraca API i uważasz je za przydatne dla użytkownika
 // Zobaczenie szczegółów koktajlu, a zwłaszcza jego składników
-// Postaraj się, aby aplikacja była ładna i przyjazna dla użytkownika 😉 
+// // Postaraj się, aby aplikacja była ładna i przyjazna dla użytkownika 😉 
 // Możesz dodać dowolne funkcje, których uznasz za stosowne.
 
 // accordion na dole strony ig
@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <main>
       <div className="w-full shadow bg-accent mb-6 rounded-2xl">
-        <div className="flex max-w-xl gap-2 mx-auto px-4">
+        <div className="flex max-w-2xl gap-2 mx-auto px-6">
           <SearchBar value={searchVal} setValue={setSearchVal} res={results}/>
           <Select value={category} setValue={setCategory} type="categories"/>
           <Select value={glass} setValue={setGlass} type="glasses"/>

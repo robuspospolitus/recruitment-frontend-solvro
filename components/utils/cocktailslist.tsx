@@ -1,6 +1,8 @@
 'use client';
 import { useQuery } from '@tanstack/react-query'
 import { Button } from "@/components/ui/button"
+import { Separator } from '../ui/separator';
+import { SheetBtn } from './sheet_btn';
 import {
   Card,
   CardAction,
@@ -39,7 +41,7 @@ export default function CocktailsList({search="",glass="All",category="All", set
   if (isPending) return <span>Loading...</span>
   if (error) return <span>Fetching data failed.</span>
   
-  console.log(drinks);
+  console.log(data.data);
   return (
     <div className='grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 '>
       {drinks.map((drink:any) => (
@@ -53,6 +55,7 @@ export default function CocktailsList({search="",glass="All",category="All", set
               <Button variant="link">Fav</Button>
             </CardAction>
           </CardHeader>
+          <Separator/>
           <CardContent>
             <div className="flex flex-col gap-1">
               <p className='text-gray-500'>{drink.glass}, {drink.alcoholic ? "alcohol" : "non-alcohol"}</p>
@@ -62,6 +65,8 @@ export default function CocktailsList({search="",glass="All",category="All", set
                     src={drink.imageUrl}
                     alt="Photo"
                     fill
+                    loading='eager'
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="w-full rounded-lg object-cover dark:brightness-20"
                   />
                 </AspectRatio>
@@ -69,9 +74,7 @@ export default function CocktailsList({search="",glass="All",category="All", set
             </div>
           </CardContent>
           <CardFooter className="flex-col gap-2">
-            <Button type="submit" className="w-full my-2">
-              View full recipe 
-            </Button>
+            <SheetBtn drink={drink} />
           </CardFooter>
         </Card>
       ))}
