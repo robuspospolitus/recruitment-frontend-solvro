@@ -34,7 +34,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <Providers>
           <nav>
-            <h1>Koktajle</h1>
+            <h1>Cocktail Browser</h1>
           </nav>
           {children}
         </Providers>
