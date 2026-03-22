@@ -16,7 +16,7 @@ export function SearchBar({value, setValue, res=0}:Props) {
     return (
         <InputGroup className="max-w-xs my-5">
             <InputGroupInput id="searchbar-id" value={value} onChange={(e) => setValue(e.target.value)} placeholder="Search..." />
-            <InputGroupAddon align="inline-end">{res} results</InputGroupAddon>
+            <InputGroupAddon align="inline-end" className="hidden md:block">{res} results</InputGroupAddon>
         </InputGroup>
     )
 }
