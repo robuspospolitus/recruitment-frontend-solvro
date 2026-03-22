@@ -12,9 +12,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { AspectRatio } from "@/components/ui/aspect-ratio"
+import { PageNav } from './page_nav';
 
 type Props = {
   category?: string | null,
@@ -23,9 +24,10 @@ type Props = {
   setResults: Dispatch<SetStateAction<number>>
 }
 export default function CocktailsList({search="",glass="All",category="All", setResults}:Props) {
+  const [page, setPage] = useState(1);
   const { data, isPending, error } = useQuery({
-    queryKey: ['cocktails'],
-    queryFn: () => fetch('https://cocktails.solvro.pl/api/v1/cocktails/').then(r => r.json()),
+    queryKey: ['cocktails', page],
+    queryFn: () => fetch(`https://cocktails.solvro.pl/api/v1/cocktails/?page=${page}`).then(r => r.json()),
   })
   let drinks = data?.data ?? [];
   if(category != "All") drinks = drinks.filter((drink:any) => drink.category == category)
@@ -41,8 +43,11 @@ export default function CocktailsList({search="",glass="All",category="All", set
   if (isPending) return <span>Loading...</span>
   if (error) return <span>Fetching data failed.</span>
   
-  console.log(data.data);
+  console.log(data);
+  console.log(page);
   return (
+    <>
+    <PageNav meta={data.meta} onPageChange={setPage}/>
     <div className='grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 '>
       {drinks.map((drink:any) => (
         <Card key={drink.id} className="w-full max-w-sm min-w-xs gap-2">
@@ -68,7 +73,7 @@ export default function CocktailsList({search="",glass="All",category="All", set
                     loading='eager'
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="w-full rounded-lg object-cover dark:brightness-20"
-                  />
+                    />
                 </AspectRatio>
               </div>
             </div>
@@ -79,5 +84,6 @@ export default function CocktailsList({search="",glass="All",category="All", set
         </Card>
       ))}
     </div>
+    </>
   )
 }

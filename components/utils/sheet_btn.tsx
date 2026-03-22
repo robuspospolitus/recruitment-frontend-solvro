@@ -66,8 +66,6 @@ export function SheetBtn({drink}:Props) {
           <div className="grid gap-3">
             {drink.instructions}
           </div>
-          <div className="grid gap-3">
-          </div>
         </div>
         <SheetFooter>
           <SheetClose asChild>
