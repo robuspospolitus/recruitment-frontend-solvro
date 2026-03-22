@@ -26,12 +26,12 @@ import { CategorySelect } from "@/components/utils/categoryselect";
 // tooltip cool do hoveru
 export default function Home() {
   const [searchVal, setSearchVal] = useState("");
-  const [category, setCategory] = useState<string|null>("");
+  const [category, setCategory] = useState<string|null>("All");
   return (
     <main>
       <SearchBar value={searchVal} setValue={setSearchVal} />
       <CategorySelect value={category} setValue={setCategory}/>
-      <CocktailsList />
+      <CocktailsList category={category} search={searchVal}/>
     </main>
   );
 }

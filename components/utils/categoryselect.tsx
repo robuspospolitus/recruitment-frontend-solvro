@@ -21,8 +21,7 @@ export function CategorySelect({value, setValue}:Props) {
         queryFn: () => fetch('https://cocktails.solvro.pl/api/v1/cocktails/categories/').then(r => r.json()),
     })
     if (isPending) return <span>Loading...</span>
-    if (error) return <span>Fetching data failed.</span>
-    console.log(value)
+    if (error) return <span>Fetching categories failed.</span>
 
     return (
         <Combobox items={data.data} onValueChange={setValue}>
