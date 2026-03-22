@@ -128,7 +128,10 @@
     @apply font-sans;
   }
   main, nav {
-    @apply max-w-6xl mx-auto my-8 p-5 flex flex-col items-center;
+    @apply max-w-6xl mx-auto my-8 p-5 flex flex-col justify-items-center items-center;
+  }
+  nav {
+    @apply flex-row w-full
   }
   p{
     @apply mt-2;

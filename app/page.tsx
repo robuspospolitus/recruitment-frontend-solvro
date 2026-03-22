@@ -18,10 +18,10 @@ export default function Home() {
 
   return (
     <main>
-      <Button className="absolute top-10 left-10 w-20 h-14" onClick={()=> theme === 'light' ? setTheme('dark'): setTheme('light')}>
+      <Button className="absolute top-0 left-0  md:top-10 md:left-10 md:w-20 md:h-14 " onClick={()=> theme === 'light' ? setTheme('dark'): setTheme('light')}>
         {theme == 'light' ? 
-          <MoonStar className="size-6"/> :
-          <Sun className="size-6"/> }
+          <MoonStar className="lg:size-6"/> :
+          <Sun className="lg:size-6"/> }
       </Button>
       <div className="w-full shadow bg-accent mb-2 rounded-2xl">
         <div className="flex max-w-2xl gap-2 mx-auto px-6">

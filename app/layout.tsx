@@ -42,8 +42,8 @@ export default function RootLayout({
           >
         <TooltipProvider>
           <Providers>
-            <nav>
-              <h1>Cocktail Browser</h1>
+            <nav className="">
+              <h1 className="text-center">Cocktail Browser</h1>
             </nav>
             {children}
           </Providers>
