@@ -112,7 +112,7 @@ function HoverName(data:any) {
             <DialogTrigger asChild>
             <Button variant="link">{data.data.name}</Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-xl">
+            <DialogContent className="sm:max-w-5xl">
             <DialogHeader>
                 <DialogTitle>{data.data.name}</DialogTitle>
                 <DialogDescription>

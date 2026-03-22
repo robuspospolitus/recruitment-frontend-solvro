@@ -5,7 +5,7 @@ A modern, responsive web application for exploring cocktails, built with a focus
 ## Features
 - Browse a collection of cocktails fetched from an external API.
 - Mark cocktails as favorites and easily access them later.
-- Quickly find cocktails using selected fields such as name, category, or ingredients.
+- Quickly find cocktails using selected fields such as name, category, or glass type.
 - Explore full cocktail details, including:
 - - Ingredients
 - - Instructions

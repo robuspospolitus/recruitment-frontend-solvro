@@ -89,7 +89,7 @@ export default function CocktailsList({search="",glass="All",category="All", set
                       fill
                       loading='eager'
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="w-full rounded-lg object-cover dark:brightness-20"
+                      className="w-full rounded-lg object-cover "
                     />
                   </AspectRatio>
                 </div>
