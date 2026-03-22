@@ -3,9 +3,8 @@ import CocktailsList from "@/components/utils/cocktailslist";
 import { SearchBar } from "@/components/utils/searchbar";
 import { useState } from "react";
 import { Select } from "@/components/utils/select";
-import { PageNav } from "@/components/utils/page_nav";
 // // Wyświetlanie listy koktajli
-// Zaznaczanie koktajlu jako ulubiony
+// // Zaznaczanie koktajlu jako ulubiony
 // // Wyszukiwanie i filtrowanie koktajli - użyj wybranych pól, które zwraca API i uważasz je za przydatne dla użytkownika
 // // Zobaczenie szczegółów koktajlu, a zwłaszcza jego składników
 // // Postaraj się, aby aplikacja była ładna i przyjazna dla użytkownika 😉 
@@ -23,7 +22,7 @@ export default function Home() {
   const [category, setCategory] = useState<string|null>("All");
   const [glass, setGlass] = useState<string|null>("All");
   const [results, setResults] = useState(0);
-  
+
   return (
     <main>
       <div className="w-full shadow bg-accent mb-2 rounded-2xl">
