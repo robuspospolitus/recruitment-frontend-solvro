@@ -8,51 +8,47 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination"
 
-interface Meta {
-  total: number;
-  perPage: number;
+type Props = {
   currentPage: number;
-  lastPage: number;
-  firstPage: number;
-  firstPageUrl: string;
-  lastPageUrl: string;
-  nextPageUrl: string | null;
-  previousPageUrl: string | null;
-}
-type PageNavProps = {
-  meta: Meta;
+  totalPages: number;
   onPageChange: (page: number) => void;
 }
-export function PageNav({ meta, onPageChange }: PageNavProps) {
-  const { currentPage, lastPage, nextPageUrl, previousPageUrl } = meta;
 
+export function PageNav({ currentPage, totalPages, onPageChange }: Props) {
   const pageNumbers: (number | "ellipsis")[] = [];
-
-  if (lastPage <= 5) {
-    for (let i = 1; i <= lastPage; i++) pageNumbers.push(i);
+  
+  if (totalPages <= 5) {
+    for (let i = 1; i <= totalPages; i++) pageNumbers.push(i);
   } else {
     if (currentPage <= 3) {
-      pageNumbers.push(1, 2, 3, "ellipsis", lastPage);
-    } else if (currentPage >= lastPage - 2) {
-      pageNumbers.push(1, "ellipsis", lastPage - 2, lastPage - 1, lastPage);
+      pageNumbers.push(1, 2, 3, "ellipsis", totalPages);
+    } else if (currentPage >= totalPages - 2) {
+      pageNumbers.push(1, "ellipsis", totalPages - 2, totalPages - 1, totalPages);
     } else {
-      pageNumbers.push(1, "ellipsis", currentPage - 1, currentPage, currentPage + 1, "ellipsis", lastPage);
+      pageNumbers.push(
+        1,
+        "ellipsis",
+        currentPage - 1,
+        currentPage,
+        currentPage + 1,
+        "ellipsis",
+        totalPages
+      );
     }
   }
 
   return (
-    <Pagination className="m-0">
+    <Pagination>
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious
-            href={previousPageUrl || "#"}
+            href="#"
             onClick={(e) => {
               e.preventDefault();
-              if (previousPageUrl) onPageChange(currentPage - 1);
+              if (currentPage > 1) onPageChange(currentPage - 1);
             }}
           />
         </PaginationItem>
-
         {pageNumbers.map((p, idx) =>
           p === "ellipsis" ? (
             <PaginationItem key={idx}>
@@ -65,7 +61,7 @@ export function PageNav({ meta, onPageChange }: PageNavProps) {
                 isActive={p === currentPage}
                 onClick={(e) => {
                   e.preventDefault();
-                  onPageChange(p as number);
+                  onPageChange(p);
                 }}
               >
                 {p}
@@ -73,13 +69,12 @@ export function PageNav({ meta, onPageChange }: PageNavProps) {
             </PaginationItem>
           )
         )}
-
         <PaginationItem>
           <PaginationNext
-            href={nextPageUrl || "#"}
+            href="#"
             onClick={(e) => {
               e.preventDefault();
-              if (nextPageUrl) onPageChange(currentPage + 1);
+              if (currentPage < totalPages) onPageChange(currentPage + 1);
             }}
           />
         </PaginationItem>

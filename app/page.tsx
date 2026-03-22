@@ -3,20 +3,8 @@ import CocktailsList from "@/components/utils/cocktailslist";
 import { SearchBar } from "@/components/utils/searchbar";
 import { useState } from "react";
 import { Select } from "@/components/utils/select";
-// // Wyświetlanie listy koktajli
-// // Zaznaczanie koktajlu jako ulubiony
-// // Wyszukiwanie i filtrowanie koktajli - użyj wybranych pól, które zwraca API i uważasz je za przydatne dla użytkownika
-// // Zobaczenie szczegółów koktajlu, a zwłaszcza jego składników
-// // Postaraj się, aby aplikacja była ładna i przyjazna dla użytkownika 😉 
-// Możesz dodać dowolne funkcje, których uznasz za stosowne.
 
 // accordion na dole strony ig
-// alert po dodaniu do polubionych
-// button group
-// empty dla zeru wyników
-// item
-// toggle do dodawania do ulubionych
-// tooltip cool do hoveru
 export default function Home() {
   const [searchVal, setSearchVal] = useState("");
   const [category, setCategory] = useState<string|null>("All");

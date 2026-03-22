@@ -26,14 +26,15 @@ type Props = {
 }
 export default function CocktailsList({search="",glass="All",category="All", setResults}:Props) {
   const [page, setPage] = useState(1);
-  const { favorites, toggleFavorite, isFavorite } = useFavorites(); // <-- tutaj
+  const perPage = 15;
+  const { toggleFavorite, isFavorite } = useFavorites();
 
   const { data, isPending, error } = useQuery({
-    queryKey: ['cocktails', page],
-    queryFn: () => fetch(`https://cocktails.solvro.pl/api/v1/cocktails/?page=${page}`).then(r => r.json()),
+    queryKey: ['cocktails-all'],
+    queryFn: fetchAllCocktails,
   })
 
-  let drinks = data?.data ?? [];
+  let drinks = data ?? [];
   if(category != "All") drinks = drinks.filter((drink:any) => drink.category == category)
   if(glass != "All") drinks = drinks.filter((drink:any) => drink.glass == glass)
   if(search) drinks = drinks.filter((drink:any) => {return drink.name.toLowerCase().includes(search.toLowerCase())});
@@ -43,15 +44,21 @@ export default function CocktailsList({search="",glass="All",category="All", set
         setResults(drinks.length)
       }
     }, [drinks, setResults])
+  
+  const totalPages = Math.ceil(drinks.length / perPage);
+  const paginatedDrinks = drinks.slice(
+    (page - 1) * perPage,
+    page * perPage
+  );
 
   if (isPending) return <span>Loading...</span>
   if (error) return <span>Fetching data failed.</span>
 
   return (
-    <div className='shadow-lg rounded-2xl p-4 mt-2'>
-      <PageNav meta={data.meta} onPageChange={setPage}/>
-      <div className='grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 '>
-        {drinks.map((drink:any) => (
+    <div className='w-full shadow-lg rounded-2xl p-4 mt-2'>
+      <PageNav currentPage={page} totalPages={totalPages} onPageChange={setPage}/>
+      <div className='grid justify-items-center gap-6 sm:grid-cols-1 md:grid-cols-2  lg:grid-cols-3 '>
+        {paginatedDrinks.map((drink:any) => (
           <Card key={drink.id} className="w-full max-w-sm min-w-xs gap-2">
             <CardHeader>
               <CardTitle>{drink.name}</CardTitle>
@@ -93,7 +100,11 @@ export default function CocktailsList({search="",glass="All",category="All", set
             </CardFooter>
           </Card>
         ))}
+        
       </div>
+      {drinks.length == 0 && 
+        <h3 className='text-center w-full'> No cocktails found. Try adjusting the filters </h3>}
+          
     </div>
   )
 }
@@ -119,7 +130,24 @@ function useFavorites() {
       return updated;
     });
   };
-  
+
   const isFavorite = (id: number) => favorites.includes(id);
   return { favorites, toggleFavorite, isFavorite };
 }
+
+const fetchAllCocktails = async () => {
+  let all: any[] = [];
+  let page = 1;
+  let lastPage = 1;
+
+  do {
+    const res = await fetch(`https://cocktails.solvro.pl/api/v1/cocktails/?page=${page}`);
+    const json = await res.json();
+
+    all = [...all, ...json.data];
+    lastPage = json.meta.lastPage;
+    page++;
+  } while (page <= lastPage);
+
+  return all;
+};
