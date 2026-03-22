@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cocktails Browser App
 
-## Getting Started
+A modern, responsive web application for exploring cocktails, built with a focus on usability, clean design, and performance. The app allows users to browse, search, and discover cocktails, view detailed ingredient information, and save their favorites for quick access.
 
-First, run the development server:
+## Features
+- Browse a collection of cocktails fetched from an external API.
+- Mark cocktails as favorites and easily access them later.
+- Quickly find cocktails using selected fields such as name, category, or ingredients.
+- Explore full cocktail details, including:
+- - Ingredients
+- - Instructions
+- - Additional metadata from the API
+- Responsive Design
+- Optimized for both desktop and mobile devices.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Tech Stack
+- Frontend Framework: Next.js
+- Language: TypeScript
+- Server State Management: TanStack Query
+- UI Components: shadcn/ui (Radix-based components)
+- Styling: Tailwind CSS
+- API: https://cocktails.solvro.pl
+
+## Deployment
+
+TO BE ADDED
+
+## Installation & Setup
+
+Clone the repository:
 ```
+git clone <your-repo-url>
+cd <project-folder>
+```
+Install dependencies:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```
+npm install
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Run the development server:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+npm run dev
+```
+Open in browser:
 
-## Learn More
+http://localhost:3000
 
-To learn more about Next.js, take a look at the following resources:
+## Additional Notes
+The application uses TanStack Query for efficient data fetching, caching, and synchronization.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Favorites are stored locally (e.g. in LocalStorage) to persist user preferences.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+UI components are built with accessibility and consistency in mind using shadcn/ui.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Thank you
+Created as a recruitment project with emphasis on code quality, UX, and modern web development practices.
