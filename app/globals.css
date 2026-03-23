@@ -131,7 +131,7 @@
     @apply max-w-6xl mx-auto my-8 p-5 flex flex-col justify-items-center items-center;
   }
   nav {
-    @apply flex-row w-full
+    @apply flex-row;
   }
   p{
     @apply mt-2;
