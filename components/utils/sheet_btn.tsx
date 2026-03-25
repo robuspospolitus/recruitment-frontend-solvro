@@ -61,7 +61,7 @@ export function SheetBtn({drink}:Props) {
                 <Badge variant="destructive">{drink.alcoholic ? "alcohol" : "non-alcohol"}</Badge>
             </div>
         </SheetHeader>
-        <div className="grid flex-1 auto-rows-min gap-6 px-4">
+        <div className="grid flex-1 auto-rows-min gap-6 px-4 overflow-auto">
           <Ingredients data={data.data}/>
           <div className="grid gap-3">
             {drink.instructions}
@@ -108,17 +108,17 @@ function Ingredients(data:any) {
 function HoverName(data:any) {
     return (
         <Dialog>
-        <form>
+        <form  className="max-h-screen">
             <DialogTrigger asChild>
             <Button variant="link">{data.data.name}</Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-5xl">
-            <DialogHeader>
-                <DialogTitle>{data.data.name}</DialogTitle>
-                <DialogDescription>
-                {data.data.description ?? "There is no description"}
-                </DialogDescription>
-            </DialogHeader>
+                <DialogHeader className="" style={{maxHeight: "70vh"}}>
+                    <DialogTitle>{data.data.name}</DialogTitle>
+                    <DialogDescription className="overflow-auto">
+                        {data.data.description ?? "There is no description"}
+                    </DialogDescription>
+                </DialogHeader>
             <DialogFooter>
                 <DialogClose asChild>
                 <Button variant="outline">Cancel</Button>
