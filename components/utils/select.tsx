@@ -32,7 +32,7 @@ export function Select({value, setValue, type}:Props) {
                     <ComboboxEmpty>No items found.</ComboboxEmpty>
                     <ComboboxList>
                         <ComboboxItem value="All"> All </ComboboxItem>
-                        {data.data.map((item:any) => (
+                        {data.data.map((item:string) => (
                             <ComboboxItem key={item} value={item}>
                             {item}
                             </ComboboxItem>

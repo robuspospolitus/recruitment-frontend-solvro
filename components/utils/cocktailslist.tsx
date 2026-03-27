@@ -24,6 +24,18 @@ type Props = {
   search?: string,
   setResults: Dispatch<SetStateAction<number>>
 }
+type Drink = {
+  alcoholic: boolean,
+  category: string,
+  createdAt: string,
+  glass: string,
+  id: number,
+  imageUrl: string,
+  instructions: string,
+  name: string,
+  updatedAt: string
+}
+
 export default function CocktailsList({search="",glass="All",category="All", setResults}:Props) {
   const [page, setPage] = useState(1);
   const perPage = 15;
@@ -35,9 +47,9 @@ export default function CocktailsList({search="",glass="All",category="All", set
   })
 
   let drinks = data ?? [];
-  if(category != "All") drinks = drinks.filter((drink:any) => drink.category == category)
-  if(glass != "All") drinks = drinks.filter((drink:any) => drink.glass == glass)
-  if(search) drinks = drinks.filter((drink:any) => {return drink.name.toLowerCase().includes(search.toLowerCase())});
+  if(category != "All") drinks = drinks.filter((drink:Drink) => drink.category == category)
+  if(glass != "All") drinks = drinks.filter((drink:Drink) => drink.glass == glass)
+  if(search) drinks = drinks.filter((drink:Drink) => {return drink.name.toLowerCase().includes(search.toLowerCase())});
 
   useEffect(() => {
       if (drinks) {
@@ -53,12 +65,12 @@ export default function CocktailsList({search="",glass="All",category="All", set
 
   if (isPending) return <span>Loading...</span>
   if (error) return <span>Fetching data failed.</span>
-
+  
   return (
     <div className='w-full shadow-lg rounded-2xl p-4 mt-2'>
       <PageNav currentPage={page} totalPages={totalPages} onPageChange={setPage}/>
       <div className='grid justify-items-center gap-6 sm:grid-cols-1 md:grid-cols-2  lg:grid-cols-3 '>
-        {paginatedDrinks.map((drink:any) => (
+        {paginatedDrinks.map((drink:Drink) => (
           <Card key={drink.id} className="w-full max-w-sm min-w-xs gap-2">
             <CardHeader>
               <CardTitle>{drink.name}</CardTitle>
@@ -96,7 +108,7 @@ export default function CocktailsList({search="",glass="All",category="All", set
               </div>
             </CardContent>
             <CardFooter className="flex-col gap-2">
-              <SheetBtn drink={drink} />
+              <SheetBtn id={drink.id} />
             </CardFooter>
           </Card>
         ))}
@@ -136,7 +148,7 @@ function useFavorites() {
 }
 
 const fetchAllCocktails = async () => {
-  let all: any[] = [];
+  let all: Drink[] = [];
   let page = 1;
   let lastPage = 1;
 
