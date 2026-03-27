@@ -54,3 +54,5 @@ UI components are built with accessibility and consistency in mind using shadcn/
 
 ## Thank you
 Created as a recruitment project with emphasis on code quality, UX, and modern web development practices.
+
+PS. I made two small fixes regarding styling for responsitivity. They were done after the schedule, so you may don't count them in if that's the problem. In my opinion fixes are natural after releasing an app.
