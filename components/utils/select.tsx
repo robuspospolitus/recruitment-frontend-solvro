@@ -27,7 +27,7 @@ export function Select({value, setValue, type}:Props) {
     return (
         <div className="my-5 max-w-72">
             <Combobox items={data.data} onValueChange={setValue}>
-                <ComboboxInput value={value || "All"} onChange={(e) => setValue(e.target.value)} placeholder="Filter" />
+                <ComboboxInput readOnly value={value || "All"} onChange={(e) => setValue(e.target.value)} placeholder="Filter" />
                 <ComboboxContent>
                     <ComboboxEmpty>No items found.</ComboboxEmpty>
                     <ComboboxList>
