@@ -64,7 +64,7 @@ export function SheetBtn({id}:{id: number}) {
     })
     if (isPending) return <span>Loading...</span>
     if (error) return <span>Fetching data failed.</span>
-    console.log(data.data);
+    
     return (
     <Sheet>
       <SheetTrigger asChild>

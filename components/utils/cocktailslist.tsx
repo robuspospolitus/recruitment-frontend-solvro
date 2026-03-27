@@ -56,6 +56,10 @@ export default function CocktailsList({search="",glass="All",category="All", set
         setResults(drinks.length)
       }
     }, [drinks, setResults])
+
+  useEffect(() => {
+    setPage(1);
+  }, [category, search, glass])
   
   const totalPages = Math.ceil(drinks.length / perPage);
   const paginatedDrinks = drinks.slice(
